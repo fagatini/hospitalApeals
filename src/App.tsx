@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { MainPage } from "./Pages/MainPage/MainPage";
+import { AdminLogin } from "./Pages/AdminLogin/AdminLogin";
+import { PatientForm } from "./Pages/PatientForm/PatientForm";
+import { RequireAuth } from "./utils/RequireAuth";
+import { AdminAccount } from "./Pages/AdminAccount/AdminAccount";
+import { Archive } from "./Pages/Аrchive/Archive";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/form" element={<PatientForm />} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAuth>
+              <AdminAccount />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/archive"
+          element={
+            <RequireAuth>
+              <Archive />
+            </RequireAuth>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
