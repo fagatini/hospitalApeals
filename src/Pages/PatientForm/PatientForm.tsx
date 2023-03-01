@@ -70,11 +70,10 @@ export const PatientForm = () => {
       email: !!personalData.email && !isEmailValid(personalData.email),
     };
     setIsWrongInputs({ ...listOfErrors });
-
     for (const error in listOfErrors) {
-      if (error) return true;
+      if (error) return false;
     }
-    return false;
+    return true;
   };
 
   const onErrorFieldClick = (fieldName: string) => {
