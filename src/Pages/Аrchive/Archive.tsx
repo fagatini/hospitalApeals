@@ -17,7 +17,7 @@ export const Archive = () => {
   useEffect(() => {
     (async () => {
       const formsRef = collection(firestore, "forms");
-      const q = query(formsRef, where("state", "!=", "awaiting"), orderBy("state"), orderBy("dateOfCreation"));
+      const q = query(formsRef, where("state", "!=", "awaiting"), orderBy("state"), orderBy("dateOfCreation", "desc"));
       const allForms = await getDocs(q);
 
       const tmpArray: Appeal[] = [];

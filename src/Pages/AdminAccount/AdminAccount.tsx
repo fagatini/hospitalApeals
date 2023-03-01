@@ -17,7 +17,7 @@ export const AdminAccount = () => {
   useEffect(() => {
     (async () => {
       const formsRef = collection(firestore, "forms");
-      const q = query(formsRef, where("state", "==", "awaiting"), orderBy("dateOfCreation"));
+      const q = query(formsRef, where("state", "==", "awaiting"), orderBy("dateOfCreation", "desc"));
       const allForms = await getDocs(q);
       const tmpArray: Appeal[] = [];
       allForms.forEach((doc) => {
