@@ -70,10 +70,8 @@ export const PatientForm = () => {
       email: !!personalData.email && !isEmailValid(personalData.email),
     };
     setIsWrongInputs({ ...listOfErrors });
-    for (const error in listOfErrors) {
-      if (error) return false;
-    }
-    return true;
+
+    return !Object.values(listOfErrors).includes(true);
   };
 
   const onErrorFieldClick = (fieldName: string) => {
